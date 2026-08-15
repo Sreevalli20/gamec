@@ -17,13 +17,16 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y cmake g++ build-essential
+        sudo apt-get install -y cmake g++-11 build-essential
 
     - name: Configure CMake
-      run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+      run: |
+        export CC=gcc-11
+        export CXX=g++-11
+        cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=20
 
     - name: Build
-      run: cmake --build build --config Release
+      run: cmake --build build --config Release -j$(nproc)
 
     - name: Run tests
       run: ctest --test-dir build --output-on-failure
