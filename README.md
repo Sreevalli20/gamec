@@ -134,8 +134,15 @@ cmake --build . --config Release
 ## Running the Game
 
 After building, run the executable:
+
+**Windows:**
 ```batch
-build\bin\Release\chronoraid.exe
+build\bin\chronoraid.exe
+```
+
+**Linux/macOS:**
+```bash
+./build/bin/chronoraid
 ```
 
 ## Controls
@@ -183,7 +190,7 @@ build\bin\Release\chronoraid.exe
 Run the test suite:
 ```bash
 cd build
-ctest --test-dir build
+ctest --test-dir . --output-on-failure
 ```
 
 Individual tests:
